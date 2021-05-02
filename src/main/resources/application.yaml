@@ -1,10 +1,11 @@
 spring:
   jmx:
     enabled: true
+  profiles:
+    active: dev
 javafx:
   stage:
     displayable: true
     resizable: false
-
 logging:
   config: classpath:logging.properties

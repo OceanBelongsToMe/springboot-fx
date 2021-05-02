@@ -1,12 +1,10 @@
 package org.ocean.ape;
 
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.ocean.ape.tomato.SystemInfo;
+import org.ocean.ape.tomato.ApeSplashScreen;
+import org.ocean.ape.tomato.AppView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,19 +21,23 @@ public class App extends AbstractJavaFxApplicationSupport
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
     @Override
     public void start(Stage stage)
+        throws Exception
     {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppView.class);
+//
+//        Arrays.stream(context.getBeanDefinitionNames()).forEach(LOGGER::error);
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+        super.start(stage);
+        stage.setAlwaysOnTop(true);
+//        stage.setX(Screen.getPrimary().getBounds().getMinX());
+//        stage.setY(Screen.getPrimary().getBounds().getMinY());
+//        stage.setWidth(Screen.getPrimary().getBounds().getWidth());
+//        stage.setHeight(Screen.getPrimary().getBounds().getHeight());
     }
 
     public static void main(String[] args)
     {
-        launch(App.class, args);
+        launch(App.class, AppView.class, new ApeSplashScreen(), args);
     }
 
     @Override
