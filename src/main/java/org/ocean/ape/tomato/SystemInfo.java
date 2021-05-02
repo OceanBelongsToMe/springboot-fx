@@ -1,10 +1,16 @@
 package org.ocean.ape.tomato;
 
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@Service
+@Configuration
 public class SystemInfo {
 
+    @Bean("SystemInfoBean")
+    public SystemInfo create()
+    {
+        return new SystemInfo();
+    }
     public static String javaVersion() {
         return System.getProperty("java.version");
     }
