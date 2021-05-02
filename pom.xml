@@ -13,7 +13,7 @@
         <exec.maven.plugin.version>1.6.0</exec.maven.plugin.version>
         <app.version>1.0.0</app.version>
         <springboot-javafx.version>2.1.7-SNAPSHOT</springboot-javafx.version>
-        <springboot.version>2.4.5</springboot.version>
+        <springboot.version>2.0.0.RELEASE</springboot.version>
         <spring.version>5.0.9.RELEASE</spring.version>
         <slf4j.version>2.0.0-alpha1</slf4j.version>
         <moduleName>ape.tomato</moduleName>
@@ -27,6 +27,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
+<!--            <version>2.0.0.RELEASE</version>-->
             <version>${springboot.version}</version>
         </dependency>
         <dependency>
