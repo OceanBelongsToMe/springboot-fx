@@ -26,6 +26,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
 <!--            <version>2.0.0.RELEASE</version>-->
             <version>${springboot.version}</version>
@@ -706,7 +711,7 @@
                         <option>--add-opens</option>
                         <option>java.base/java.lang=spring.core</option>
                     </options>
-                    <!--<commandlineArgs>-Xmx1024m</commandlineArgs>-->
+                    <commandlineArgs>-Xmx2048m</commandlineArgs>
                 </configuration>
             </plugin>
             <plugin>
