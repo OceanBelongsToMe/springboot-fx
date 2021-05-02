@@ -14,7 +14,7 @@
         <app.version>1.0.0</app.version>
         <springboot-javafx.version>2.1.7-SNAPSHOT</springboot-javafx.version>
         <springboot.version>2.4.5</springboot.version>
-        <spring.version>5.0.9.RELEASE</spring.version>
+        <spring.version>5.3.6</spring.version>
         <slf4j.version>2.0.0-alpha1</slf4j.version>
         <moduleName>ape.tomato</moduleName>
     </properties>
@@ -636,41 +636,6 @@
                                         }
                                     </moduleInfoSource>
                                 </module>
-                                <!--                                <module>-->
-                                <!--                                    <artifact>-->
-                                <!--                                        <groupId>org.javassist</groupId>-->
-                                <!--                                        <artifactId>javassist</artifactId>-->
-                                <!--                                    </artifact>-->
-                                <!--                                    <moduleInfoSource>-->
-                                <!--                                        module javassist {-->
-                                <!--                                        requires java.management;-->
-                                <!--                                        requires jdk.attach;-->
-
-                                <!--                                        requires transitive java.desktop;-->
-                                <!--                                        requires transitive java.instrument;-->
-                                <!--                                        requires transitive jdk.jdi;-->
-
-                                <!--                                        exports javassist;-->
-                                <!--                                        exports javassist.bytecode;-->
-                                <!--                                        exports javassist.bytecode.analysis;-->
-                                <!--                                        exports javassist.bytecode.annotation;-->
-                                <!--                                        exports javassist.bytecode.stackmap;-->
-                                <!--                                        exports javassist.compiler;-->
-                                <!--                                        exports javassist.compiler.ast;-->
-                                <!--                                        exports javassist.convert;-->
-                                <!--                                        exports javassist.expr;-->
-                                <!--                                        exports javassist.runtime;-->
-                                <!--                                        exports javassist.scopedpool;-->
-                                <!--                                        exports javassist.tools;-->
-                                <!--                                        exports javassist.tools.reflect;-->
-                                <!--                                        exports javassist.tools.rmi;-->
-                                <!--                                        exports javassist.tools.web;-->
-                                <!--                                        exports javassist.util;-->
-                                <!--                                        exports javassist.util.proxy;-->
-
-                                <!--                                        }-->
-                                <!--                                    </moduleInfoSource>-->
-                                <!--                                </module>-->
                             </modules>
                         </configuration>
                     </execution>
@@ -683,10 +648,10 @@
                 <executions>
                     <execution>
                         <id>Build Native Mac App</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jlink</goal>
-                        </goals>
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>jlink</goal>-->
+<!--                        </goals>-->
                     </execution>
                 </executions>
                 <configuration>
