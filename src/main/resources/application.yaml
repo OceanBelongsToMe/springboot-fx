@@ -1,0 +1,10 @@
+spring:
+  jmx:
+    enabled: true
+javafx:
+  stage:
+    displayable: true
+    resizable: false
+
+logging:
+  config: classpath:logging.properties
