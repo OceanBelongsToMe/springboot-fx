@@ -729,10 +729,13 @@
                     <mainClass>${moduleName}/${appStart}</mainClass>
                     <jmodsPath>${project.build.directory}/modules</jmodsPath>
                     <runtimePathOption>MODULEPATH</runtimePathOption>
+<!--                    <bindServices>true</bindServices>-->
                     <options>
                         <!--<option>-agentlib:jdwp=transport=dt_socket,address=8001,server=y,suspend=y</option>-->
                         <option>--add-opens</option>
                         <option>java.base/java.lang=spring.core</option>
+<!--                        <option>&#45;&#45;add-modules</option>-->
+<!--                        <option>jdk.crypto.ec,jdk.localedata</option>-->
                     </options>
                     <commandlineArgs>-Xmx2048m</commandlineArgs>
                 </configuration>
