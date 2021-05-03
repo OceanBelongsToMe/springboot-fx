@@ -39,13 +39,13 @@ cp target/"${MAIN_JAR}" target/modules
 # shellcheck disable=SC2006
 #echo "detecting required modules"
 # shellcheck disable=SC2006
-detected_modules=`"$JAVA_HOME"/bin/jdeps \
+detected_modules=$("$JAVA_HOME"/bin/jdeps \
   -q \
   --multi-release "${JAVA_VERSION}" \
   --ignore-missing-deps \
   --print-module-deps \
   --class-path "target/modules/*" \
-    target/classes/"${MAIN_CLASS_PATH}"`
+  target/classes/"${MAIN_CLASS_PATH}")
 echo "detected modules: ${detected_modules}"
 
 # ------ MANUAL MODULES -----------------------------------------------------
@@ -71,13 +71,15 @@ echo "creating java runtime image"
 "$JAVA_HOME"/bin/jlink \
   --strip-native-commands \
   --no-header-files \
-  --no-man-pages  \
-  --compress=2  \
-  --module-path target/modules\
+  --no-man-pages \
+  --compress=2 \
+  --module-path target/modules \
   --strip-debug \
-  --add-modules "${detected_modules},javafx.base,javafx.fxml,javafx.controls,javafx.graphics" \
+  --add-modules "${detected_modules},javafx.base,javafx.fxml,javafx.controls,javafx.graphics,org.slf4j,org.slf4j.simple" \
   --output target/tomato
 
+rm target/modules/javafx*.jar
+rm target/modules/slf4j*.jar
 # ------ PACKAGING ----------------------------------------------------------
 # In the end we will find the package inside the target/installer directory.
 
