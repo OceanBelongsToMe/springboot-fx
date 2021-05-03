@@ -73,8 +73,9 @@ echo "creating java runtime image"
   --no-header-files \
   --no-man-pages  \
   --compress=2  \
+  --module-path target/modules\
   --strip-debug \
-  --add-modules "${detected_modules}" \
+  --add-modules "${detected_modules},javafx.base,javafx.fxml,javafx.controls,javafx.graphics" \
   --output target/tomato
 
 # ------ PACKAGING ----------------------------------------------------------
