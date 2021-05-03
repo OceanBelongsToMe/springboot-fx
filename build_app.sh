@@ -28,7 +28,7 @@ rm -rfd target/installer/
 #mkdir -p target/installer/input/libs/
 #
 #cp target/libs/* target/installer/input/libs/
-#cp target/${MAIN_JAR} target/installer/input/libs/
+cp target/"${MAIN_JAR}" target/modules
 
 # ------ REQUIRED MODULES ---------------------------------------------------
 # Use jlink to detect all modules that are required to run the application.
@@ -39,14 +39,14 @@ rm -rfd target/installer/
 # shellcheck disable=SC2006
 #echo "detecting required modules"
 # shellcheck disable=SC2006
-#detected_modules=`"$JAVA_HOME"/bin/jdeps \
-#  -q \
-#  --multi-release "${JAVA_VERSION}" \
-#  --ignore-missing-deps \
-#  --print-module-deps \
-#  --class-path "target/libs/*" \
-#    target/classes/org/ocean/ape/tomato/App.class`
-#echo "detected modules: ${detected_modules}"
+detected_modules=`"$JAVA_HOME"/bin/jdeps \
+  -q \
+  --multi-release "${JAVA_VERSION}" \
+  --ignore-missing-deps \
+  --print-module-deps \
+  --class-path "target/modules/*" \
+    target/classes/"${MAIN_CLASS_PATH}"`
+echo "detected modules: ${detected_modules}"
 
 # ------ MANUAL MODULES -----------------------------------------------------
 # jdk.crypto.ec has to be added manually bound via --bind-services or
@@ -67,16 +67,15 @@ rm -rfd target/installer/
 # of the jpackage tool. This approach allows for finer configuration and also
 # works with dependencies that are not fully modularized, yet.
 #
-#echo "creating java runtime image"
-#"$JAVA_HOME"/bin/jlink \
-#  --no-header-files \
-#  --no-man-pages  \
-#  --compress=2  \
-#  --strip-debug \
-#  --launcher "${APP_NAME}"="${MAIN_CLASS}"\
-#  --add-modules "${detected_modules},${manual_modules}" \
-#  --include-locales=en,de \
-#  --output target/tomato
+echo "creating java runtime image"
+"$JAVA_HOME"/bin/jlink \
+  --strip-native-commands \
+  --no-header-files \
+  --no-man-pages  \
+  --compress=2  \
+  --strip-debug \
+  --add-modules "${detected_modules}" \
+  --output target/tomato
 
 # ------ PACKAGING ----------------------------------------------------------
 # In the end we will find the package inside the target/installer directory.
@@ -100,9 +99,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   "$JAVA_HOME"/bin/jpackage \
     --type $INSTALLER_TYPE \
+    --input target/modules \
     --dest target/installer \
+    --main-jar "${MAIN_JAR}" \
     -n "${APP_NAME}" \
-    -m "${MAIN_CLASS}" \
+    --main-class "${MAIN_CLASS}" \
     --runtime-image target/"${APP_NAME}" \
     --app-version "${APP_VERSION}" \
     --vendor "TIMER Inc." \
