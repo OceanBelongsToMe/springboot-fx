@@ -1,12 +1,15 @@
 package org.ocean.ape.tomato;
 
-public class SystemInfo {
+public class SystemInfo
+{
 
-    public static String javaVersion() {
+    public static String javaVersion()
+    {
         return System.getProperty("java.version");
     }
 
-    public static String javafxVersion() {
+    public static String javafxVersion()
+    {
         return System.getProperty("javafx.version");
     }
 

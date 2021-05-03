@@ -16,8 +16,10 @@ module ape.tomato {
     requires jdk.jdwp.agent;
 
     exports org.ocean.ape.tomato;
-    opens org.ocean.ape.tomato to javafx.graphics, spring.context, spring.core, spring.beans;
     exports org.ocean.ape;
+//    opens org.ocean.ape.tomato;
+//    opens org.ocean.ape;
+    opens org.ocean.ape.tomato to javafx.graphics, spring.context, spring.core, spring.beans;
     opens org.ocean.ape to javafx.graphics, spring.beans, spring.context, spring.core;
 
 }

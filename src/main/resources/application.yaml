@@ -4,6 +4,6 @@ spring:
 javafx:
   stage:
     displayable: true
-    resizable: false
+#    resizable: false
 #logging:
 #  config: classpath:logging.properties

@@ -1,0 +1,17 @@
+
+opens org.springframework.context.annotation to spring.core,spring.beans;
+
+
+opens org.springframework.boot.autoconfigure to spring.core;
+opens org.springframework.boot.autoconfigure.condition to spring.core;
+opens org.springframework.boot.autoconfigure.context to spring.core;
+opens org.springframework.boot.autoconfigure.cache to spring.core;
+opens org.springframework.boot.autoconfigure.info to spring.core;
+opens org.springframework.boot.autoconfigure.jmx to spring.core;
+opens org.springframework.boot.autoconfigure.security.reactive to spring.core;
+opens org.springframework.boot.autoconfigure.web.embedded to spring.core;
+
+
+opens org.springframework.boot to spring.core;
+opens org.springframework.boot.diagnostics to spring.core;
+opens org.springframework.boot.context.properties to spring.core;
