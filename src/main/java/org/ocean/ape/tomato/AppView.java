@@ -1,9 +1,11 @@
 package org.ocean.ape.tomato;
 
 import de.felixroske.jfxsupport.AbstractFxmlView;
+import de.felixroske.jfxsupport.FXMLView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@FXMLView("app.fxml")
 public class AppView extends AbstractFxmlView
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(AppView.class);
