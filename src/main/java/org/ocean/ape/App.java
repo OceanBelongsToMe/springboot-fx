@@ -17,7 +17,6 @@ import java.util.Collection;
  * JavaFX App
  */
 @SpringBootApplication
-@ImportResource(locations = "classpath:spring.xml")
 public class App extends AbstractJavaFxApplicationSupport
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);

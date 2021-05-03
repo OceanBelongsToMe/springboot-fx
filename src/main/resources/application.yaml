@@ -5,5 +5,5 @@ javafx:
   stage:
     displayable: true
     resizable: false
-logging:
-  config: classpath:logging.properties
+#logging:
+#  config: classpath:logging.properties
