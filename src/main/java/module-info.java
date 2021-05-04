@@ -13,6 +13,7 @@ module ape.tomato {
     requires java.desktop;
     requires java.sql;
     requires java.base;
+    requires lombok;
 //    requires jdk.jdwp.agent;
 
     exports org.ocean.ape.tomato;

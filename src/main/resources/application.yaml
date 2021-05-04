@@ -1,8 +1,6 @@
 spring:
   jmx:
     enabled: true
-  config:
-    name: app
 javafx:
   stage:
     displayable: true
