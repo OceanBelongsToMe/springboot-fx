@@ -1,9 +1,9 @@
 spring:
   jmx:
     enabled: true
+  config:
+    name: app
 javafx:
   stage:
     displayable: true
 #    resizable: false
-#logging:
-#  config: classpath:logging.properties

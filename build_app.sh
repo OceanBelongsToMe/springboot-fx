@@ -67,6 +67,11 @@ echo "detected modules: ${detected_modules}"
 # of the jpackage tool. This approach allows for finer configuration and also
 # works with dependencies that are not fully modularized, yet.
 #
+JAVA_FX="javafx.base,javafx.fxml,javafx.controls,javafx.graphics"
+SLF4J="org.slf4j,org.slf4j.simple"
+OTHER_JAR="java.annotation,org.yaml.snakeyaml"
+other_spring="spring.boot,spring.context,spring.boot.autoconfigure,spring.core,spring.expression,springboot.javafx.support,spring.aop,spring.beans"
+SPRING="spring.jcl"
 echo "creating java runtime image"
 "$JAVA_HOME"/bin/jlink \
   --strip-native-commands \
@@ -75,11 +80,16 @@ echo "creating java runtime image"
   --compress=2 \
   --module-path target/modules \
   --strip-debug \
-  --add-modules "${detected_modules},javafx.base,javafx.fxml,javafx.controls,javafx.graphics,org.slf4j,org.slf4j.simple" \
+  --add-modules "${detected_modules},${JAVA_FX},${SLF4J},${OTHER_JAR},${SPRING}" \
   --output target/tomato
 
 rm target/modules/javafx*.jar
 rm target/modules/slf4j*.jar
+rm target/modules/jakarta.annotation-api*.jar
+rm target/modules/snakeyaml*.jar
+rm target/modules/spring-boot-starter*.jar
+rm target/modules/spring-jcl*.jar
+
 # ------ PACKAGING ----------------------------------------------------------
 # In the end we will find the package inside the target/installer directory.
 

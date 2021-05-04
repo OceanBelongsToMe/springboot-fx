@@ -7,9 +7,9 @@ module ape.tomato {
     requires spring.context;
     requires spring.core;
     requires javafx.graphics;
+    requires javafx.controls;
     requires org.slf4j;
     requires org.slf4j.simple;
-    requires javafx.controls;
     requires java.desktop;
     requires java.sql;
     requires java.base;

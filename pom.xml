@@ -154,6 +154,577 @@
                     </environmentVariables>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.moditect</groupId>
+                <artifactId>moditect-maven-plugin</artifactId>
+                <version>1.0.0.RC1</version>
+                <executions>
+                    <execution>
+                        <id>add-module-info-to-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>add-module-info</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/modules</outputDirectory>
+                            <overwriteExistingFiles>true</overwriteExistingFiles>
+                            <modules>
+                                <module>
+                                    <artifact>
+                                        <groupId>jakarta.annotation</groupId>
+                                        <artifactId>jakarta.annotation-api</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module java.annotation {
+                                        exports javax.annotation;
+                                        exports javax.annotation.security;
+                                        exports javax.annotation.sql;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-aop</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module spring.aop {
+                                        requires transitive java.xml;
+                                        requires transitive spring.beans;
+                                        requires transitive spring.core;
+                                        requires transitive spring.jcl;
+
+                                        exports org.aopalliance.aop;
+                                        exports org.aopalliance.intercept;
+                                        exports org.springframework.aop;
+                                        exports org.springframework.aop.aspectj;
+                                        exports org.springframework.aop.aspectj.annotation;
+                                        exports org.springframework.aop.aspectj.autoproxy;
+                                        exports org.springframework.aop.config;
+                                        exports org.springframework.aop.framework;
+                                        exports org.springframework.aop.framework.adapter;
+                                        exports org.springframework.aop.framework.autoproxy;
+                                        exports org.springframework.aop.framework.autoproxy.target;
+                                        exports org.springframework.aop.interceptor;
+                                        exports org.springframework.aop.scope;
+                                        exports org.springframework.aop.support;
+                                        exports org.springframework.aop.support.annotation;
+                                        exports org.springframework.aop.target;
+                                        exports org.springframework.aop.target.dynamic;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework.boot</groupId>
+                                        <artifactId>spring-boot</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module spring.boot {
+                                        requires java.naming;
+                                        requires org.slf4j;
+                                        requires org.yaml.snakeyaml;
+                                        requires spring.aop;
+
+                                        requires transitive java.desktop;
+                                        requires transitive java.logging;
+                                        requires transitive java.management;
+                                        requires transitive java.sql;
+                                        requires transitive java.xml;
+                                        requires transitive spring.beans;
+                                        requires transitive spring.context;
+                                        requires transitive spring.core;
+                                        requires transitive spring.jcl;
+
+                                        exports org.springframework.boot;
+                                        exports org.springframework.boot.admin;
+                                        exports org.springframework.boot.ansi;
+                                        exports org.springframework.boot.availability;
+                                        exports org.springframework.boot.builder;
+                                        exports org.springframework.boot.cloud;
+                                        exports org.springframework.boot.context;
+                                        exports org.springframework.boot.context.annotation;
+                                        exports org.springframework.boot.context.config;
+                                        exports org.springframework.boot.context.event;
+                                        exports org.springframework.boot.context.logging;
+                                        exports org.springframework.boot.context.metrics.buffering;
+                                        exports org.springframework.boot.context.properties;
+                                        exports org.springframework.boot.context.properties.bind;
+                                        exports org.springframework.boot.context.properties.bind.handler;
+                                        exports org.springframework.boot.context.properties.bind.validation;
+                                        exports org.springframework.boot.context.properties.source;
+                                        exports org.springframework.boot.convert;
+                                        exports org.springframework.boot.diagnostics;
+                                        exports org.springframework.boot.diagnostics.analyzer;
+                                        exports org.springframework.boot.env;
+                                        exports org.springframework.boot.info;
+                                        exports org.springframework.boot.jackson;
+                                        exports org.springframework.boot.jdbc;
+                                        exports org.springframework.boot.jdbc.metadata;
+                                        exports org.springframework.boot.jms;
+                                        exports org.springframework.boot.json;
+                                        exports org.springframework.boot.jta.atomikos;
+                                        exports org.springframework.boot.jta.bitronix;
+                                        exports org.springframework.boot.liquibase;
+                                        exports org.springframework.boot.logging;
+                                        exports org.springframework.boot.logging.java;
+                                        exports org.springframework.boot.logging.log4j2;
+                                        exports org.springframework.boot.logging.logback;
+                                        exports org.springframework.boot.origin;
+                                        exports org.springframework.boot.orm.jpa;
+                                        exports org.springframework.boot.orm.jpa.hibernate;
+                                        exports org.springframework.boot.reactor;
+                                        exports org.springframework.boot.rsocket.context;
+                                        exports org.springframework.boot.rsocket.messaging;
+                                        exports org.springframework.boot.rsocket.netty;
+                                        exports org.springframework.boot.rsocket.server;
+                                        exports org.springframework.boot.security.reactive;
+                                        exports org.springframework.boot.security.servlet;
+                                        exports org.springframework.boot.system;
+                                        exports org.springframework.boot.task;
+                                        exports org.springframework.boot.type.classreading;
+                                        exports org.springframework.boot.util;
+                                        exports org.springframework.boot.validation;
+                                        exports org.springframework.boot.validation.beanvalidation;
+                                        exports org.springframework.boot.web.client;
+                                        exports org.springframework.boot.web.codec;
+                                        exports org.springframework.boot.web.context;
+                                        exports org.springframework.boot.web.embedded.jetty;
+                                        exports org.springframework.boot.web.embedded.netty;
+                                        exports org.springframework.boot.web.embedded.tomcat;
+                                        exports org.springframework.boot.web.embedded.undertow;
+                                        exports org.springframework.boot.web.error;
+                                        exports org.springframework.boot.web.reactive.context;
+                                        exports org.springframework.boot.web.reactive.error;
+                                        exports org.springframework.boot.web.reactive.filter;
+                                        exports org.springframework.boot.web.reactive.function.client;
+                                        exports org.springframework.boot.web.reactive.result.view;
+                                        exports org.springframework.boot.web.reactive.server;
+                                        exports org.springframework.boot.web.server;
+                                        exports org.springframework.boot.web.servlet;
+                                        exports org.springframework.boot.web.servlet.context;
+                                        exports org.springframework.boot.web.servlet.error;
+                                        exports org.springframework.boot.web.servlet.filter;
+                                        exports org.springframework.boot.web.servlet.server;
+                                        exports org.springframework.boot.web.servlet.support;
+                                        exports org.springframework.boot.web.servlet.view;
+                                        exports org.springframework.boot.webservices.client;
+
+                                        opens org.springframework.boot to spring.core;
+                                        opens org.springframework.boot.diagnostics to spring.core;
+                                        opens org.springframework.boot.context.properties to spring.core;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-expression</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module spring.expression {
+                                        requires spring.jcl;
+
+                                        requires transitive spring.core;
+
+                                        exports org.springframework.expression;
+                                        exports org.springframework.expression.common;
+                                        exports org.springframework.expression.spel;
+                                        exports org.springframework.expression.spel.ast;
+                                        exports org.springframework.expression.spel.standard;
+                                        exports org.springframework.expression.spel.support;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-core</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module spring.core {
+                                        requires jdk.jfr;
+
+                                        requires transitive java.desktop;
+                                        requires transitive java.xml;
+                                        requires transitive jdk.unsupported;
+                                        requires transitive spring.jcl;
+
+                                        exports org.springframework.asm;
+                                        exports org.springframework.cglib;
+                                        exports org.springframework.cglib.beans;
+                                        exports org.springframework.cglib.core;
+                                        exports org.springframework.cglib.core.internal;
+                                        exports org.springframework.cglib.proxy;
+                                        exports org.springframework.cglib.reflect;
+                                        exports org.springframework.cglib.transform;
+                                        exports org.springframework.cglib.transform.impl;
+                                        exports org.springframework.cglib.util;
+                                        exports org.springframework.core;
+                                        exports org.springframework.core.annotation;
+                                        exports org.springframework.core.codec;
+                                        exports org.springframework.core.convert;
+                                        exports org.springframework.core.convert.converter;
+                                        exports org.springframework.core.convert.support;
+                                        exports org.springframework.core.env;
+                                        exports org.springframework.core.io;
+                                        exports org.springframework.core.io.buffer;
+                                        exports org.springframework.core.io.support;
+                                        exports org.springframework.core.log;
+                                        exports org.springframework.core.metrics;
+                                        exports org.springframework.core.metrics.jfr;
+                                        exports org.springframework.core.serializer;
+                                        exports org.springframework.core.serializer.support;
+                                        exports org.springframework.core.style;
+                                        exports org.springframework.core.task;
+                                        exports org.springframework.core.task.support;
+                                        exports org.springframework.core.type;
+                                        exports org.springframework.core.type.classreading;
+                                        exports org.springframework.core.type.filter;
+                                        exports org.springframework.lang;
+                                        exports org.springframework.objenesis;
+                                        exports org.springframework.objenesis.instantiator;
+                                        exports org.springframework.objenesis.instantiator.android;
+                                        exports org.springframework.objenesis.instantiator.annotations;
+                                        exports org.springframework.objenesis.instantiator.basic;
+                                        exports org.springframework.objenesis.instantiator.gcj;
+                                        exports org.springframework.objenesis.instantiator.perc;
+                                        exports org.springframework.objenesis.instantiator.sun;
+                                        exports org.springframework.objenesis.instantiator.util;
+                                        exports org.springframework.objenesis.strategy;
+                                        exports org.springframework.util;
+                                        exports org.springframework.util.backoff;
+                                        exports org.springframework.util.comparator;
+                                        exports org.springframework.util.concurrent;
+                                        exports org.springframework.util.function;
+                                        exports org.springframework.util.unit;
+                                        exports org.springframework.util.xml;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module spring.beans {
+                                        requires transitive java.desktop;
+                                        requires transitive java.prefs;
+                                        requires transitive java.xml;
+                                        requires transitive org.yaml.snakeyaml;
+                                        requires transitive spring.core;
+                                        requires transitive spring.jcl;
+
+                                        exports org.springframework.beans;
+                                        exports org.springframework.beans.annotation;
+                                        exports org.springframework.beans.factory;
+                                        exports org.springframework.beans.factory.annotation;
+                                        exports org.springframework.beans.factory.config;
+                                        exports org.springframework.beans.factory.groovy;
+                                        exports org.springframework.beans.factory.parsing;
+                                        exports org.springframework.beans.factory.serviceloader;
+                                        exports org.springframework.beans.factory.support;
+                                        exports org.springframework.beans.factory.wiring;
+                                        exports org.springframework.beans.factory.xml;
+                                        exports org.springframework.beans.propertyeditors;
+                                        exports org.springframework.beans.support;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework.boot</groupId>
+                                        <artifactId>spring-boot-autoconfigure</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module spring.boot.autoconfigure {
+                                        requires org.slf4j;
+                                        requires spring.aop;
+                                        requires spring.jcl;
+
+                                        requires transitive java.annotation;
+                                        requires transitive java.management;
+                                        requires transitive java.naming;
+                                        requires transitive java.sql;
+                                        requires transitive spring.beans;
+                                        requires transitive spring.boot;
+                                        requires transitive spring.context;
+                                        requires transitive spring.core;
+
+                                        exports org.springframework.boot.autoconfigure;
+                                        exports org.springframework.boot.autoconfigure.admin;
+                                        exports org.springframework.boot.autoconfigure.amqp;
+                                        exports org.springframework.boot.autoconfigure.aop;
+                                        exports org.springframework.boot.autoconfigure.availability;
+                                        exports org.springframework.boot.autoconfigure.batch;
+                                        exports org.springframework.boot.autoconfigure.cache;
+                                        exports org.springframework.boot.autoconfigure.cassandra;
+                                        exports org.springframework.boot.autoconfigure.codec;
+                                        exports org.springframework.boot.autoconfigure.condition;
+                                        exports org.springframework.boot.autoconfigure.context;
+                                        exports org.springframework.boot.autoconfigure.couchbase;
+                                        exports org.springframework.boot.autoconfigure.dao;
+                                        exports org.springframework.boot.autoconfigure.data;
+                                        exports org.springframework.boot.autoconfigure.data.cassandra;
+                                        exports org.springframework.boot.autoconfigure.data.couchbase;
+                                        exports org.springframework.boot.autoconfigure.data.elasticsearch;
+                                        exports org.springframework.boot.autoconfigure.data.jdbc;
+                                        exports org.springframework.boot.autoconfigure.data.jpa;
+                                        exports org.springframework.boot.autoconfigure.data.ldap;
+                                        exports org.springframework.boot.autoconfigure.data.mongo;
+                                        exports org.springframework.boot.autoconfigure.data.neo4j;
+                                        exports org.springframework.boot.autoconfigure.data.r2dbc;
+                                        exports org.springframework.boot.autoconfigure.data.redis;
+                                        exports org.springframework.boot.autoconfigure.data.rest;
+                                        exports org.springframework.boot.autoconfigure.data.solr;
+                                        exports org.springframework.boot.autoconfigure.data.web;
+                                        exports org.springframework.boot.autoconfigure.diagnostics.analyzer;
+                                        exports org.springframework.boot.autoconfigure.domain;
+                                        exports org.springframework.boot.autoconfigure.elasticsearch;
+                                        exports org.springframework.boot.autoconfigure.elasticsearch.rest;
+                                        exports org.springframework.boot.autoconfigure.flyway;
+                                        exports org.springframework.boot.autoconfigure.freemarker;
+                                        exports org.springframework.boot.autoconfigure.groovy.template;
+                                        exports org.springframework.boot.autoconfigure.gson;
+                                        exports org.springframework.boot.autoconfigure.h2;
+                                        exports org.springframework.boot.autoconfigure.hateoas;
+                                        exports org.springframework.boot.autoconfigure.hazelcast;
+                                        exports org.springframework.boot.autoconfigure.http;
+                                        exports org.springframework.boot.autoconfigure.http.codec;
+                                        exports org.springframework.boot.autoconfigure.influx;
+                                        exports org.springframework.boot.autoconfigure.info;
+                                        exports org.springframework.boot.autoconfigure.integration;
+                                        exports org.springframework.boot.autoconfigure.jackson;
+                                        exports org.springframework.boot.autoconfigure.jdbc;
+                                        exports org.springframework.boot.autoconfigure.jdbc.metadata;
+                                        exports org.springframework.boot.autoconfigure.jersey;
+                                        exports org.springframework.boot.autoconfigure.jms;
+                                        exports org.springframework.boot.autoconfigure.jms.activemq;
+                                        exports org.springframework.boot.autoconfigure.jms.artemis;
+                                        exports org.springframework.boot.autoconfigure.jmx;
+                                        exports org.springframework.boot.autoconfigure.jooq;
+                                        exports org.springframework.boot.autoconfigure.jsonb;
+                                        exports org.springframework.boot.autoconfigure.kafka;
+                                        exports org.springframework.boot.autoconfigure.ldap;
+                                        exports org.springframework.boot.autoconfigure.ldap.embedded;
+                                        exports org.springframework.boot.autoconfigure.liquibase;
+                                        exports org.springframework.boot.autoconfigure.logging;
+                                        exports org.springframework.boot.autoconfigure.mail;
+                                        exports org.springframework.boot.autoconfigure.mongo;
+                                        exports org.springframework.boot.autoconfigure.mongo.embedded;
+                                        exports org.springframework.boot.autoconfigure.mustache;
+                                        exports org.springframework.boot.autoconfigure.neo4j;
+                                        exports org.springframework.boot.autoconfigure.orm.jpa;
+                                        exports org.springframework.boot.autoconfigure.quartz;
+                                        exports org.springframework.boot.autoconfigure.r2dbc;
+                                        exports org.springframework.boot.autoconfigure.rsocket;
+                                        exports org.springframework.boot.autoconfigure.security;
+                                        exports org.springframework.boot.autoconfigure.security.oauth2.client;
+                                        exports org.springframework.boot.autoconfigure.security.oauth2.client.reactive;
+                                        exports org.springframework.boot.autoconfigure.security.oauth2.client.servlet;
+                                        exports org.springframework.boot.autoconfigure.security.oauth2.resource;
+                                        exports
+                                        org.springframework.boot.autoconfigure.security.oauth2.resource.reactive;
+                                        exports org.springframework.boot.autoconfigure.security.oauth2.resource.servlet;
+                                        exports org.springframework.boot.autoconfigure.security.reactive;
+                                        exports org.springframework.boot.autoconfigure.security.rsocket;
+                                        exports org.springframework.boot.autoconfigure.security.saml2;
+                                        exports org.springframework.boot.autoconfigure.security.servlet;
+                                        exports org.springframework.boot.autoconfigure.sendgrid;
+                                        exports org.springframework.boot.autoconfigure.session;
+                                        exports org.springframework.boot.autoconfigure.solr;
+                                        exports org.springframework.boot.autoconfigure.task;
+                                        exports org.springframework.boot.autoconfigure.template;
+                                        exports org.springframework.boot.autoconfigure.thymeleaf;
+                                        exports org.springframework.boot.autoconfigure.transaction;
+                                        exports org.springframework.boot.autoconfigure.transaction.jta;
+                                        exports org.springframework.boot.autoconfigure.validation;
+                                        exports org.springframework.boot.autoconfigure.web;
+                                        exports org.springframework.boot.autoconfigure.web.client;
+                                        exports org.springframework.boot.autoconfigure.web.embedded;
+                                        exports org.springframework.boot.autoconfigure.web.format;
+                                        exports org.springframework.boot.autoconfigure.web.reactive;
+                                        exports org.springframework.boot.autoconfigure.web.reactive.error;
+                                        exports org.springframework.boot.autoconfigure.web.reactive.function.client;
+                                        exports org.springframework.boot.autoconfigure.web.servlet;
+                                        exports org.springframework.boot.autoconfigure.web.servlet.error;
+                                        exports org.springframework.boot.autoconfigure.webservices;
+                                        exports org.springframework.boot.autoconfigure.webservices.client;
+                                        exports org.springframework.boot.autoconfigure.websocket.reactive;
+                                        exports org.springframework.boot.autoconfigure.websocket.servlet;
+
+                                        opens org.springframework.boot.autoconfigure to spring.core;
+                                        opens org.springframework.boot.autoconfigure.condition to spring.core;
+                                        opens org.springframework.boot.autoconfigure.context to spring.core;
+                                        opens org.springframework.boot.autoconfigure.cache to spring.core;
+                                        opens org.springframework.boot.autoconfigure.info to spring.core;
+                                        opens org.springframework.boot.autoconfigure.jmx to spring.core;
+                                        opens org.springframework.boot.autoconfigure.security.reactive to spring.core;
+                                        opens org.springframework.boot.autoconfigure.web.embedded to spring.core;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-jcl</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module spring.jcl {
+                                        requires java.logging;
+                                        requires org.slf4j;
+
+                                        exports org.apache.commons.logging;
+                                        exports org.apache.commons.logging.impl;
+
+                                        provides org.apache.commons.logging.LogFactory with
+                                        org.apache.commons.logging.LogFactoryService;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.yaml</groupId>
+                                        <artifactId>snakeyaml</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module org.yaml.snakeyaml {
+                                        requires java.logging;
+
+                                        requires transitive java.desktop;
+
+                                        exports org.yaml.snakeyaml;
+                                        exports org.yaml.snakeyaml.composer;
+                                        exports org.yaml.snakeyaml.constructor;
+                                        exports org.yaml.snakeyaml.emitter;
+                                        exports org.yaml.snakeyaml.env;
+                                        exports org.yaml.snakeyaml.error;
+                                        exports org.yaml.snakeyaml.events;
+                                        exports org.yaml.snakeyaml.extensions.compactnotation;
+                                        exports org.yaml.snakeyaml.external.biz.base64Coder;
+                                        exports org.yaml.snakeyaml.external.com.google.gdata.util.common.base;
+                                        exports org.yaml.snakeyaml.introspector;
+                                        exports org.yaml.snakeyaml.nodes;
+                                        exports org.yaml.snakeyaml.parser;
+                                        exports org.yaml.snakeyaml.reader;
+                                        exports org.yaml.snakeyaml.representer;
+                                        exports org.yaml.snakeyaml.resolver;
+                                        exports org.yaml.snakeyaml.scanner;
+                                        exports org.yaml.snakeyaml.serializer;
+                                        exports org.yaml.snakeyaml.tokens;
+                                        exports org.yaml.snakeyaml.util;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module spring.context {
+                                        requires java.annotation;
+
+                                        requires transitive java.desktop;
+                                        requires transitive java.instrument;
+                                        requires transitive java.management;
+                                        requires transitive java.naming;
+                                        requires transitive java.rmi;
+                                        requires transitive java.scripting;
+                                        requires transitive java.xml;
+                                        requires transitive jdk.httpserver;
+                                        requires transitive spring.aop;
+                                        requires transitive spring.beans;
+                                        requires transitive spring.core;
+                                        requires transitive spring.expression;
+                                        requires transitive spring.jcl;
+
+                                        exports org.springframework.cache;
+                                        exports org.springframework.cache.annotation;
+                                        exports org.springframework.cache.concurrent;
+                                        exports org.springframework.cache.config;
+                                        exports org.springframework.cache.interceptor;
+                                        exports org.springframework.cache.support;
+                                        exports org.springframework.context;
+                                        exports org.springframework.context.annotation;
+                                        exports org.springframework.context.config;
+                                        exports org.springframework.context.event;
+                                        exports org.springframework.context.expression;
+                                        exports org.springframework.context.i18n;
+                                        exports org.springframework.context.index;
+                                        exports org.springframework.context.support;
+                                        exports org.springframework.context.weaving;
+                                        exports org.springframework.ejb.access;
+                                        exports org.springframework.ejb.config;
+                                        exports org.springframework.format;
+                                        exports org.springframework.format.annotation;
+                                        exports org.springframework.format.datetime;
+                                        exports org.springframework.format.datetime.joda;
+                                        exports org.springframework.format.datetime.standard;
+                                        exports org.springframework.format.number;
+                                        exports org.springframework.format.number.money;
+                                        exports org.springframework.format.support;
+                                        exports org.springframework.instrument.classloading;
+                                        exports org.springframework.instrument.classloading.glassfish;
+                                        exports org.springframework.instrument.classloading.jboss;
+                                        exports org.springframework.instrument.classloading.tomcat;
+                                        exports org.springframework.instrument.classloading.weblogic;
+                                        exports org.springframework.instrument.classloading.websphere;
+                                        exports org.springframework.jmx;
+                                        exports org.springframework.jmx.access;
+                                        exports org.springframework.jmx.export;
+                                        exports org.springframework.jmx.export.annotation;
+                                        exports org.springframework.jmx.export.assembler;
+                                        exports org.springframework.jmx.export.metadata;
+                                        exports org.springframework.jmx.export.naming;
+                                        exports org.springframework.jmx.export.notification;
+                                        exports org.springframework.jmx.support;
+                                        exports org.springframework.jndi;
+                                        exports org.springframework.jndi.support;
+                                        exports org.springframework.remoting;
+                                        exports org.springframework.remoting.rmi;
+                                        exports org.springframework.remoting.soap;
+                                        exports org.springframework.remoting.support;
+                                        exports org.springframework.scheduling;
+                                        exports org.springframework.scheduling.annotation;
+                                        exports org.springframework.scheduling.concurrent;
+                                        exports org.springframework.scheduling.config;
+                                        exports org.springframework.scheduling.support;
+                                        exports org.springframework.scripting;
+                                        exports org.springframework.scripting.bsh;
+                                        exports org.springframework.scripting.config;
+                                        exports org.springframework.scripting.groovy;
+                                        exports org.springframework.scripting.support;
+                                        exports org.springframework.stereotype;
+                                        exports org.springframework.ui;
+                                        exports org.springframework.ui.context;
+                                        exports org.springframework.ui.context.support;
+                                        exports org.springframework.validation;
+                                        exports org.springframework.validation.annotation;
+                                        exports org.springframework.validation.beanvalidation;
+                                        exports org.springframework.validation.support;
+
+                                        opens org.springframework.context.annotation to spring.core,spring.beans;
+
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+
+                            </modules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <repositories>
