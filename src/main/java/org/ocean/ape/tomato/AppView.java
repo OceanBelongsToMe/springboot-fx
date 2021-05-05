@@ -5,7 +5,7 @@ import de.felixroske.jfxsupport.FXMLView;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j(topic = "hhhhhhh")
-@FXMLView("/fxml/app.fxml")
+@FXMLView("/app.fxml")
 public class AppView extends AbstractFxmlView
 {
 
